@@ -2,7 +2,7 @@
 
 **Tech Stack:** Node.js, Express, Socket.IO, MongoDB, Redis
 
-A student-friendly backend for a real-time chat app with user authentication, friend lists, group chat, media upload, and more.
+backend for a real-time chat app with user authentication, friend lists, group chat, media upload, and more.
 
 ---
 
