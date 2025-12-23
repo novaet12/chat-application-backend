@@ -8,4 +8,4 @@ router.post('/add-member', auth, groupController.addMember);
 router.post('/remove-member', auth, groupController.removeMember);
 router.get('/my-groups', auth, groupController.getGroups);
 
-module.exports = router; 
+module.exports = router;

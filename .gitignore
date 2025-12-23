@@ -3,3 +3,4 @@
 /.env
 /logs
 .DS_Store
+.main.py

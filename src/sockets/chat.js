@@ -27,7 +27,7 @@ function chatHandler(io) {
       socket.join(group._id.toString());
     });
 
-    // Join group event
+    // Join group 
     socket.on('join_group', async ({ groupId }) => {
       const group = await Group.findById(groupId);
       if (group && group.members.includes(socket.userId)) {
@@ -35,14 +35,14 @@ function chatHandler(io) {
       }
     });
 
-    // Leave group event
+    // Leave group 
     socket.on('leave_group', ({ groupId }) => {
       socket.leave(groupId);
     });
 
     // Listen for sending messages
     socket.on('send_message', async (data) => {
-      // data: { recipients, content, group, mediaUrl }
+      // data: { recipients: [userId], group: groupId (optional), content: string, mediaUrl: string (optional) }
       const message = new Message({
         sender: socket.userId,
         recipients: data.recipients,
@@ -57,7 +57,6 @@ function chatHandler(io) {
         type: 'new_message',
         message
       }));
-      // Emit to recipients
       data.recipients.forEach((rid) => {
         io.to(rid).emit('receive_message', message);
       });
@@ -66,7 +65,7 @@ function chatHandler(io) {
       }
     });
 
-    // Listen for read receipts
+    // Listen for read
     socket.on('read_message', async ({ messageId }) => {
       const message = await Message.findById(messageId);
       if (message && !message.readBy.includes(socket.userId)) {
@@ -78,13 +77,13 @@ function chatHandler(io) {
       }
     });
 
-    // Typing indicator
+    // Typing notifier
     socket.on('typing', ({ to }) => {
       io.to(to).emit('typing', { from: socket.userId });
     });
   });
 
-  // Redis subscriber for scaling
+  // Redis
   const sub = redis.duplicate();
   sub.subscribe('messages');
   sub.on('message', (channel, message) => {
@@ -102,4 +101,4 @@ function chatHandler(io) {
   });
 }
 
-module.exports = chatHandler; 
+export = chatHandler;

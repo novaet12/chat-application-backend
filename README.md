@@ -13,7 +13,7 @@ backend for a real-time chat app with user authentication, friend lists, group c
 ---
 
 ## Project Purpose
-This project is a demonstration of my programming and backend development skills. It is a personal project to showcase my ability to design and implement a scalable, real-time chat backend.
+This project is a demonstration of my programming and backend development skills. It is a personal project to showcase my ability to design and implement a scalable, real-time chat backend eve though i used other peoples code and used ai 🙂.
 
 ---
 
